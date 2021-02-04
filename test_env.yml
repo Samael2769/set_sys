@@ -1,0 +1,23 @@
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: make
+      run: make
+    - name: tests_bash
+    - name: install_criterion
+      run: ./tests/install_criterion.sh
+    - name: gcovr
+      run: sudo apt install gcovr
+    - name: unitest
+      run: make tests_run
