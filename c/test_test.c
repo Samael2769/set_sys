@@ -7,6 +7,7 @@
 
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
+#include "name.h"
 
 void redirect_all_std(void)
 {

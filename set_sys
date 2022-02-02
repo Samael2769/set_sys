@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+
+PATH = "/home/usr/"
+
+if [[ $# -eq 1 && $1 == "-h" || $1 == "--help" ]]; then
+    echo "set_sys language name"
+    echo -e "\t language = programming language to work with"
+    echo -e "\t name = name of the project binary"
+    exit 0
+fi
+if [[ $# -ne 2 ]]; then
+    echo "Wrong arg number"
+    exit 1
+fi
+
+LANG=$1
+NAME=$2
+
+if [[ $LANG != "c++" && $LANG != "java" && $LANG != "c" && $LANG != "python" ]]; then
+    echo "Wrong language"
+    exit 1
+fi
+
+if [[ $LANG == "c" ]]; then
+    cp "$PATH/Makefile_c" "./Makefile"
+    cp "$PATH/c/main.c" ./
+    cp "$PATH/c/test_test.c" ./
+    cp "$PATH/c/name.h" ./
+    cp "$PATH/c/name.c" ./
+    mkdir "sources"
+    mkdir "includes"
+    mkdir "tests"
+    sed -i 's/&1/main.c/g' "Makefile"
+    sed -i "s/&2/$NAME/g" "Makefile"
+    sed -i 's/&3/c/g' "Makefile"
+    sed -i 's/&4/gcc/g' "Makefile"
+    sed -i "s/&5/$NAME.c/g" "Makefile"
+
+    sed -i "s/name/$NAME/g" "main.c"
+
+    sed -i "s/name/$NAME/g" "name.c"
+
+    sed -i "s/name/$NAME/g" "test_test.c"
+
+    sed -i "s/name/$NAME/g" "name.h"
+    BIG=$(echo $NAME | tr "[:lower:]" "[:upper:]")
+    sed -i "s/NAME/$BIG/g" "name.h"
+
+    mv "main.c" "sources/main.c"
+    mv "name.h" "includes/"$NAME".h"
+    mv "test_test.c" "tests/test_"$NAME".c"
+    mv "name.c" "sources/$NAME.c"
+    exit 0
+fi
+
+if [[ $LANG == "c++" ]]; then
+    cp "$PATH/Makefile_c" "./Makefile"
+    cp "$PATH/c++/main.cpp" ./
+    cp "$PATH/c++/test_test.cpp" ./
+    cp "$PATH/c++/name.hpp" ./
+    mkdir "sources"
+    mkdir "includes"
+    mkdir "tests"
+    sed -i "s/&1/$NAME.cpp/g" "Makefile"
+    sed -i "s/&2/$NAME/g" "Makefile"
+    sed -i 's/&3/cpp/g' "Makefile"
+    sed -i 's/&4/g++/g' "Makefile"
+    sed -i "s/&5//g" "Makefile"
+
+
+    sed -i "s/name/$NAME/g" "main.cpp"
+    sed -i "s/name/$NAME/g" "name.hpp"
+    BIG=$(echo $NAME | tr "[:lower:]" "[:upper:]")
+    sed -i "s/NAME/$BIG/g" "name.hpp"
+    sed -i "s/name/$NAME/g" "test_test.cpp"
+
+    mv "main.cpp" "sources/$NAME.cpp"
+    mv "name.hpp" "includes/"$NAME".hpp"
+    mv "test_test.cpp" "tests/test_"$NAME".cpp"
+    exit 0
+fi
+
+if [[ $LANG == "java" ]]; then
+    cp "$PATH/Makefile_java" "./Makefile"
+    cp "$PATH/java/name.java" ./
+    mkdir "sources"
+    mkdir "tests"
+    sed -i "s/name/$NAME/g" "name.java"
+    sed -i "s/&1/$NAME/g" "Makefile"
+    mv "name.java" "sources/$NAME.java"
+    exit 0
+fi
+
+if [[ $LANG == "python" ]]; then
+    cp "$PATH/Makefile_py" "./Makefile"
+    cp "$PATH/python/main.py" ./
+    cp "$PATH/python/name.py" ./
+    mkdir "sources"
+    mkdir "tests"
+    sed -i "s/&1/$NAME/g" "Makefile"
+    sed -i "s/nama/$NAME/g" "main.py"
+    sed -i "s/name/$NAME/g" "name.py"
+    mv "name.py" "sources/$NAME.py"
+    mv "main.py" "sources/main.py"
+fi

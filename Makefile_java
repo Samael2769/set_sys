@@ -1,0 +1,32 @@
+##
+## EPITECH PROJECT, 2021
+## Untitled (Workspace)
+## File description:
+## Makefile
+##
+
+DIR		=	sources/
+
+JFLAGS	=	-g
+
+JC	=	javac
+
+.SUFFIXES:	.java .class
+
+.java.class:
+		$(JC) $(JFLAGS) $*.java
+
+NAME	=	&1
+
+FILES 	= 	$(NAME).java\
+
+CLASSES = $(addprefix $(DIR), $(FILES))
+
+all: $(NAME)
+
+$(NAME): $(CLASSES:.java=.class)
+	mv $(DIR)$(NAME).class ./
+
+clean:
+	$(RM) *.class
+	$(RM) $(DIR)*.class
