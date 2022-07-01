@@ -10,6 +10,8 @@
 
 class name {
     public:
+        name();
+        ~name();
     protected:
     private:
 };

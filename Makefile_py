@@ -31,7 +31,7 @@ NAME_TEST	=	unit_test
 all: $(NAME)
 
 $(NAME):
-	@$(DISPLAY) -e "\e[31mMaking 108trigo...\e[0m"
+	@$(DISPLAY) -e "\e[31mMaking $(NAME)...\e[0m"
 	@$(CP) $(SRC) $(NAME)
 	@$(CHMOD) +x $(NAME)
 	@$(DISPLAY) -e "\e[32mCompilation succesful\e[0m"
@@ -44,8 +44,8 @@ tests_run: unit_test
 	gcovr
 	gcovr -b
 clean:
-	@$(DISPLAY) -e "\e[31mRemove *gc* files\e[0m"
-	@$(RM) *gc*
+	@$(DISPLAY) -e "\e[31mRemove pycache files\e[0m"
+	@$(RM) -rf $(DIR)/__pycache__
 fclean: clean
 	@$(DISPLAY) -e "\e[31mRemove binary file\e[0m"
 	@$(RM) $(NAME)

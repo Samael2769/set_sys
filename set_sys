@@ -1,6 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
-PATH = "/home/usr/"
+CHEM="/mnt/c/Users/jerem/Desktop/Samael/Projects/Personal/set_sys"
+
+echo $CHEM
 
 if [[ $# -eq 1 && $1 == "-h" || $1 == "--help" ]]; then
     echo "set_sys language name"
@@ -22,11 +24,11 @@ if [[ $LANG != "c++" && $LANG != "java" && $LANG != "c" && $LANG != "python" ]];
 fi
 
 if [[ $LANG == "c" ]]; then
-    cp "$PATH/Makefile_c" "./Makefile"
-    cp "$PATH/c/main.c" ./
-    cp "$PATH/c/test_test.c" ./
-    cp "$PATH/c/name.h" ./
-    cp "$PATH/c/name.c" ./
+    cp "$CHEM/Makefile_c" "./Makefile"
+    cp "$CHEM/c/main.c" ./
+    cp "$CHEM/c/test_test.c" ./
+    cp "$CHEM/c/name.h" ./
+    cp "$CHEM/c/name.c" ./
     mkdir "sources"
     mkdir "includes"
     mkdir "tests"
@@ -54,35 +56,38 @@ if [[ $LANG == "c" ]]; then
 fi
 
 if [[ $LANG == "c++" ]]; then
-    cp "$PATH/Makefile_c" "./Makefile"
-    cp "$PATH/c++/main.cpp" ./
-    cp "$PATH/c++/test_test.cpp" ./
-    cp "$PATH/c++/name.hpp" ./
+    cp "$CHEM/Makefile_c" "./Makefile"
+    cp "$CHEM/c++/main.cpp" ./
+    cp "$CHEM/c++/test_test.cpp" ./
+    cp "$CHEM/c++/name.hpp" ./
+    cp "$CHEM/c++/name.cpp" ./
     mkdir "sources"
     mkdir "includes"
     mkdir "tests"
-    sed -i "s/&1/$NAME.cpp/g" "Makefile"
+    sed -i "s/&5/$NAME.cpp/g" "Makefile"
     sed -i "s/&2/$NAME/g" "Makefile"
     sed -i 's/&3/cpp/g' "Makefile"
     sed -i 's/&4/g++/g' "Makefile"
-    sed -i "s/&5//g" "Makefile"
+    sed -i "s/&1/main.cpp/g" "Makefile"
 
 
     sed -i "s/name/$NAME/g" "main.cpp"
+    sed -i "s/name/$NAME/g" "name.cpp"
     sed -i "s/name/$NAME/g" "name.hpp"
     BIG=$(echo $NAME | tr "[:lower:]" "[:upper:]")
     sed -i "s/NAME/$BIG/g" "name.hpp"
     sed -i "s/name/$NAME/g" "test_test.cpp"
 
-    mv "main.cpp" "sources/$NAME.cpp"
+    mv "main.cpp" "sources/main.cpp"
     mv "name.hpp" "includes/"$NAME".hpp"
     mv "test_test.cpp" "tests/test_"$NAME".cpp"
+    mv "name.cpp" "sources/$NAME.cpp"
     exit 0
 fi
 
 if [[ $LANG == "java" ]]; then
-    cp "$PATH/Makefile_java" "./Makefile"
-    cp "$PATH/java/name.java" ./
+    cp "$CHEM/Makefile_java" "./Makefile"
+    cp "$CHEM/java/name.java" ./
     mkdir "sources"
     mkdir "tests"
     sed -i "s/name/$NAME/g" "name.java"
@@ -92,9 +97,9 @@ if [[ $LANG == "java" ]]; then
 fi
 
 if [[ $LANG == "python" ]]; then
-    cp "$PATH/Makefile_py" "./Makefile"
-    cp "$PATH/python/main.py" ./
-    cp "$PATH/python/name.py" ./
+    cp "$CHEM/Makefile_py" "./Makefile"
+    cp "$CHEM/python/main.py" ./
+    cp "$CHEM/python/name.py" ./
     mkdir "sources"
     mkdir "tests"
     sed -i "s/&1/$NAME/g" "Makefile"

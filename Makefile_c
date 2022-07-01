@@ -5,46 +5,45 @@
 ## Makefile
 ##
 
-SRC_DIR	=	sources/
+SRC_DIR			=	sources/
 
-TEST_DIR	=	tests/
+TEST_DIR		=	tests/
 
-LIB_DIR	=	lib/sm_libc/
+LIB_DIR			=	lib/sm_libc/
 
-SRC_FILES	=\
+SRC_FILES		=	&5			\
 
-SRC_FILES_MAIN	=	&1\
-					&5\
+SRC_FILES_MAIN	=	&1			\
 
-TEST_FILES	=\
+TEST_FILES		=				\
 
-SRC	=	$(addprefix $(SRC_DIR), $(SRC_FILES))
+SRC				=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
-SRC_TEST	=	$(addprefix $(TEST_DIR), $(TEST_FILES))
+SRC_TEST		=	$(addprefix $(TEST_DIR), $(TEST_FILES))
 
-SRC_MAIN	=	$(addprefix $(SRC_DIR), $(SRC_FILES_MAIN))
+SRC_MAIN		=	$(addprefix $(SRC_DIR), $(SRC_FILES_MAIN))
 
-OBJ	=	$(SRC:.&3=.o) $(SRC_MAIN:.&3=.o)	
+OBJ				=	$(SRC:.&3=.o) $(SRC_MAIN:.&3=.o)	
 
-NAME	=	&2
-
-##############################################################
-
-CFLAGS	=	-W -Wall -Wextra
-
-CPPFLAGS	=	-I./includes
-
-TEST_LIB	=	--coverage -lcriterion -lgcov
+NAME			=	&2
 
 ##############################################################
 
-CC	=	&4
+CFLAGS			=	-W -Wall -Wextra
 
-PRNT	=	echo
+CPPFLAGS		=	-I./includes
 
-COVERAGE	= gcovr
+TEST_LIB		=	--coverage -lcriterion -lgcov
 
-TEST_NAME	=	unit_test
+##############################################################
+
+CC				=	&4
+
+PRNT			=	echo
+
+COVERAGE		= gcovr
+
+TEST_NAME		=	unit_test
 
 
 ##############################################################
