@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-CHEM="/mnt/c/Users/jerem/Desktop/Samael/Projects/Personal/set_sys"
+CHEM="REPLACE-WITH-PATH"
 
 echo $CHEM
 
