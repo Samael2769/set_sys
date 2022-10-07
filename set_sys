@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-CHEM="REPLACE-WITH-PATH"
+CHEM="/mnt/c/Samael/Project/Personnal/set_sys"
 
 echo $CHEM
 
@@ -18,7 +18,7 @@ fi
 LANG=$1
 NAME=$2
 
-if [[ $LANG != "c++" && $LANG != "java" && $LANG != "c" && $LANG != "python" ]]; then
+if [[ $LANG != "c++" && $LANG != "java" && $LANG != "c" && $LANG != "python" && $LANG != "expo" && $LANG != "django" && $LANG != "unity" ]]; then
     echo "Wrong language"
     exit 1
 fi
@@ -107,4 +107,16 @@ if [[ $LANG == "python" ]]; then
     sed -i "s/name/$NAME/g" "name.py"
     mv "name.py" "sources/$NAME.py"
     mv "main.py" "sources/main.py"
+fi
+
+if [[ $LANG == "expo" ]]; then
+    expo init $NAME --yes
+fi
+
+if [[ $LANG == "django" ]]; then
+    django-admin startproject $NAME
+fi
+
+if [[ $LANG == "unity" ]]; then
+    /mnt/c/Program\ Files/Unity/Hub/Editor/2021.3.10f1/Editor/Unity.exe --createProject ./$NAME
 fi
