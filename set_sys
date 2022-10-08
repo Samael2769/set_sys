@@ -18,7 +18,7 @@ fi
 LANG=$1
 NAME=$2
 
-if [[ $LANG != "c++" && $LANG != "java" && $LANG != "c" && $LANG != "python" && $LANG != "expo" && $LANG != "django" && $LANG != "unity" ]]; then
+if [[ $LANG != "c++" && $LANG != "java" && $LANG != "c" && $LANG != "python" && $LANG != "expo" && $LANG != "django" && $LANG != "unity" && $LANG != "mvn" ]]; then
     echo "Wrong language"
     exit 1
 fi
@@ -119,4 +119,13 @@ fi
 
 if [[ $LANG == "unity" ]]; then
     /mnt/c/Program\ Files/Unity/Hub/Editor/2021.3.10f1/Editor/Unity.exe --createProject ./$NAME
+fi
+
+if [[ $LANG == "mvn" ]]; then
+
+    mvn archetype:generate -DgroupId=com.$NAME -DartifactId=$NAME -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dversion=1.0-SNAPSHOT
+    cp "$CHEM/java/Makefile" "./$NAME/Makefile"
+    sed -i "s/&1/$NAME/g" "./$NAME/Makefile"
+    sed -i '$ d' $NAME/pom.xml
+    cat "$CHEM/java/pom.xml" >> $NAME/pom.xml
 fi
